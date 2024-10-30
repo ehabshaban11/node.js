@@ -19,10 +19,10 @@
                     <th>נקודת ביקור</th>
                     <th>הערות</th>
                     <th>זמן הביקור</th>
+                    
                 </tr>
             </thead>
             <tbody>
-                <!-- כאן נוסיף שורות באופן דינמי -->
             </tbody>
         </table>
         
@@ -30,9 +30,9 @@
         <div class="form-section">
             <h2>הוסף ביקור חדש</h2>
             <form id="addVisitForm">
-                <input type="number" id="comment" placeholder="ID">
+                <input type="number" id="visitId" placeholder="ID" required>
                 <input type="text" id="guardName" placeholder="שם שומר" required>
-                <input type="text" id="comment" placeholder="הערה">
+                <input type="text" id="comment" placeholder="הערה" required>
                 <button type="submit">הוסף ביקור</button>
             </form>
         </div>
@@ -41,7 +41,7 @@
         <div class="form-section">
             <h2>מחק ביקור לפי ID</h2>
             <form id="deleteVisitForm">
-                <input type="number" id="visitIdToDelete" placeholder="ID">
+                <input type="number" id="visitIdToDelete" placeholder="ID" required>
                 <button type="submit">מחק ביקור</button>
             </form>
         </div>
@@ -50,9 +50,9 @@
         <div class="form-section">
             <h2>עדכן ביקור</h2>
             <form id="updateVisitForm">
-                <input type="number" id="visitIdToUpdate" placeholder="ID">
-                <input type="text" id="newGuardName" placeholder="שם שומר">
-                <input type="text" id="newComment" placeholder="הערה">
+                <input type="number" id="visitIdToUpdate" placeholder="ID" required>
+                <input type="text" id="newGuardName" placeholder="שם שומר" required>
+                <input type="text" id="newComment" placeholder="הערה" required>
                 <button type="submit">עדכן ביקור</button>
             </form>
         </div>
