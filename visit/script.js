@@ -1,4 +1,4 @@
-// منذ البداية، نستمع إلى حدث إرسال النموذج
+// معالجة إضافة زيارة جديدة
 document.getElementById("addVisitForm").addEventListener("submit", function (e) {
     e.preventDefault(); // منع تحديث الصفحة
 
@@ -66,4 +66,35 @@ document.getElementById("updateVisitForm").addEventListener("submit", function (
 
     // مسح الحقول بعد التحديث
     document.getElementById("updateVisitForm").reset();
+});
+
+// معالجة حذف زيارة
+document.getElementById("deleteVisitForm").addEventListener("submit", function (e) {
+    e.preventDefault(); // منع تحديث الصفحة
+
+    const visitIdToDelete = document.getElementById("visitIdToDelete").value;
+
+    // تحقق من أن حقل ID مليء
+    if (visitIdToDelete === "") {
+        alert("נא למלא את השדה");
+        return;
+    }
+
+    const rows = document.querySelectorAll("table tbody tr");
+    let found = false;
+
+    rows.forEach(row => {
+        const cells = row.getElementsByTagName("td");
+        if (cells[0].textContent === visitIdToDelete) { // إذا كان ID يطابق
+            row.remove(); // حذف الصف
+            found = true;
+        }
+    });
+
+    if (!found) {
+        alert("לא נמצאה ביקור עם ID זה");
+    }
+
+    // مسح حقل ID بعد الحذف
+    document.getElementById("deleteVisitForm").reset();
 });
