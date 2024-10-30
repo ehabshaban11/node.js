@@ -1,6 +1,7 @@
 const express = require('express');
 const mysql = require('mysql2');
 const bodyParser = require('body-parser');
+const path = require('path');
 
 const app = express();
 const port = 3000;
@@ -23,7 +24,7 @@ connection.connect((err) => {
 
 // وسطاء
 app.use(bodyParser.json());
-app.use(express.static('public')); // تأكد من أن ملفات HTML و CSS و JS موجودة هنا
+app.use(express.static(path.join(__dirname, 'public'))); // تأكد من أن ملفات HTML و CSS و JS موجودة هنا
 
 // نقطة النهاية لجلب النقاط
 app.get('/api/points', (req, res) => {
@@ -62,6 +63,11 @@ const insertVisit = (guardName, pointId, comments) => {
 
 // استدعاء الدالة مع بيانات الاختبار (يمكنك تعديلها حسب الحاجة)
 insertVisit('John Doe', 1, 'Routine check');
+
+// نقطة النهاية للمسار الجذر
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'index.html')); // تأكد من أن لديك ملف index.html في مجلد public
+});
 
 // بدء الخادم
 app.listen(port, () => {
