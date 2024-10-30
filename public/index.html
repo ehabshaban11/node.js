@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ביקורים</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>ביקורים</h1>
+        
+        <!-- טבלה להצגת ביקורים -->
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>שם שומר</th>
+                    <th>הערה</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- כאן נוסיף שורות באופן דינמי -->
+            </tbody>
+        </table>
+        
+        <!-- טופס להוספת ביקור חדש -->
+        <div class="form-section">
+            <h2>הוסף ביקור חדש</h2>
+            <form id="addVisitForm">
+                <input type="text" id="guardName" placeholder="שם שומר" required>
+                <input type="text" id="comment" placeholder="הערה">
+                <button type="submit">הוסף ביקור</button>
+            </form>
+        </div>
+
+        <!-- טופס למחיקת ביקור לפי ID -->
+        <div class="form-section">
+            <h2>מחק ביקור לפי ID</h2>
+            <form id="deleteVisitForm">
+                <input type="number" id="visitIdToDelete" placeholder="ID">
+                <button type="submit">מחק ביקור</button>
+            </form>
+        </div>
+
+        <!-- טופס לעדכון ביקור -->
+        <div class="form-section">
+            <h2>עדכן ביקור</h2>
+            <form id="updateVisitForm">
+                <input type="number" id="visitIdToUpdate" placeholder="ID">
+                <input type="text" id="newGuardName" placeholder="שם שומר">
+                <input type="text" id="newComment" placeholder="הערה">
+                <button type="submit">עדכן ביקור</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
