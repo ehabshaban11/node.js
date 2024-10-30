@@ -1,100 +1,33 @@
-// معالجة إضافة زيارة جديدة
+// מאזין ללחיצה על טופס ההוספה
 document.getElementById("addVisitForm").addEventListener("submit", function (e) {
-    e.preventDefault(); // منع تحديث الصفحة
+    e.preventDefault(); // מונע את הרענון של הדף
 
-    // الحصول على القيم من الحقول
-    const visitId = document.getElementById("visitId").value;
+    // מקבל את הערכים מהשדות
     const guardName = document.getElementById("guardName").value;
     const comment = document.getElementById("comment").value;
 
-    // تحقق من أن جميع الحقول مليئة
-    if (guardName === "" || comment === "" || visitId === "") {
+    // בודק אם כל השדות מלאים
+    if (guardName === "" || comment === "") {
         alert("נא למלא את כל השדות");
         return;
     }
 
-    // إنشاء صف جديد في الجدول
+    // יוצר שורה חדשה לטבלה
     const table = document.querySelector("table tbody");
     const newRow = document.createElement("tr");
 
+    // יוצר תאים לשורה החדשה ומוסיף את הערכים
     newRow.innerHTML = `
-        <td>${visitId}</td> <!-- ID -->
+        <td>--</td> <!-- ID יכול להתעדכן אוטומטית על ידי השרת -->
         <td>${guardName}</td>
-        <td>נקודת ביקור כלשהי</td>
+        <td>נקודת ביקור כלשהי</td> <!-- כאן ניתן להוסיף נתונים נוספים -->
         <td>${comment}</td>
-        <td>${new Date().toLocaleString()}</td> <!-- זמן הביקור -->
+        <td>זמן הביקור הנוכחי</td>
     `;
 
-    // إضافة الصف إلى الجدول
+    // מוסיף את השורה לטבלה
     table.appendChild(newRow);
 
-    // مسح الحقول بعد الإضافة
+    // מנקה את השדות לאחר ההוספה
     document.getElementById("addVisitForm").reset();
-});
-
-// معالجة تحديث الزيارة
-document.getElementById("updateVisitForm").addEventListener("submit", function (e) {
-    e.preventDefault(); // منع تحديث الصفحة
-
-    // الحصول على القيم من الحقول
-    const visitIdToUpdate = document.getElementById("visitIdToUpdate").value;
-    const newGuardName = document.getElementById("newGuardName").value;
-    const newComment = document.getElementById("newComment").value;
-
-    // تحقق من أن جميع الحقول مليئة
-    if (visitIdToUpdate === "" || newGuardName === "" || newComment === "") {
-        alert("נא למלא את כל השדות");
-        return;
-    }
-
-    // العثور على الصف الصحيح في الجدول وتحديثه
-    const rows = document.querySelectorAll("table tbody tr");
-    let found = false;
-
-    rows.forEach(row => {
-        const cells = row.getElementsByTagName("td");
-        if (cells[0].textContent === visitIdToUpdate) { // إذا كان ID يطابق
-            cells[1].textContent = newGuardName; // تحديث اسم الحارس
-            cells[3].textContent = newComment; // تحديث التعليق
-            found = true;
-        }
-    });
-
-    if (!found) {
-        alert("לא נמצאה ביקור עם ID זה");
-    }
-
-    // مسح الحقول بعد التحديث
-    document.getElementById("updateVisitForm").reset();
-});
-
-// معالجة حذف زيارة
-document.getElementById("deleteVisitForm").addEventListener("submit", function (e) {
-    e.preventDefault(); // منع تحديث الصفحة
-
-    const visitIdToDelete = document.getElementById("visitIdToDelete").value;
-
-    // تحقق من أن حقل ID مليء
-    if (visitIdToDelete === "") {
-        alert("נא למלא את השדה");
-        return;
-    }
-
-    const rows = document.querySelectorAll("table tbody tr");
-    let found = false;
-
-    rows.forEach(row => {
-        const cells = row.getElementsByTagName("td");
-        if (cells[0].textContent === visitIdToDelete) { // إذا كان ID يطابق
-            row.remove(); // حذف الصف
-            found = true;
-        }
-    });
-
-    if (!found) {
-        alert("לא נמצאה ביקור עם ID זה");
-    }
-
-    // مسح حقل ID بعد الحذف
-    document.getElementById("deleteVisitForm").reset();
 });
